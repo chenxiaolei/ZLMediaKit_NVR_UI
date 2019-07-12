@@ -1,0 +1,57 @@
+
+.channel-config-panellist{
+  .ant-list-pagination{
+    text-align: center;
+  }
+}
+
+
+
+.channel-config-panel{
+  &.active{
+      opacity: 1;
+
+  }
+
+  opacity: 0.7;
+
+  .channel-config-edit-btn{
+    margin-left: 25px;
+  }
+  .channel-config-active-switch{
+    height: 30px;
+    line-height: 28px;
+    width: 80px;
+    &:after{
+      width: 26px;
+      height: 26px;
+      border-radius: 26px;
+    }
+  }
+
+  .channel-config-view-panel-inner {
+    > div {
+      display: flex;
+
+
+      > div:first-child{
+        width: 150px;
+      }
+
+      > div:last-child{
+        flex:1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+
+      .c-enable{
+        color: #389e0d;
+      }
+      .c-disable{
+        color: #bfbfbf;
+      }
+    }
+  }
+}
