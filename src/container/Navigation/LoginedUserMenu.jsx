@@ -87,7 +87,7 @@ export default class LoginedUserMenu extends React.Component {
                         <div className={"logined-user-avatar-wrap"}>
                             <span className="logined-user-avatar-desc">
                                 <span>admin</span>
-                                <span>admin</span>
+                                <span>管理员</span>
                             </span>
 
                             {

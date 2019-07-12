@@ -20,12 +20,12 @@ export const userAuth = (state = initialState, action) => {
                 isLogging: true,
             };
         case `${LOGIN_USER}_SUCCESS`:
-            const userLogged = action.payload.data;
+            const secret = action.payload.secret;
             return {
                 ...state,
                 isAuthenticated: true,
-                token: userLogged.token,
-                loginName: userLogged.loginName,
+                token: secret,
+                loginName: "管理员",
                 isLogging: false,
             };
         case `${LOGIN_USER}_ERROR`:

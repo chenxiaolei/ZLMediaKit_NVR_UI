@@ -1,9 +1,12 @@
 import React from 'react';
 import "./Channel.less"
 import RvPage from "../../component/RvPage/RvPage";
-import {Button, Card, Icon, List, Switch} from "antd";
-import {findChannels, modifyChannel} from "../../service/channel";
+import {Button, Card, Icon, List, Switch, message} from "antd";
+import {deleteChannel, findChannels, modifyChannel} from "../../service/channel";
 import classnames from 'classnames';
+import RvModal from "../../component/RvModal/RvModal";
+import ChannelForm from "./ChannelForm";
+
 
 export default class Channel extends React.Component {
 
@@ -19,15 +22,15 @@ export default class Channel extends React.Component {
     }
 
     componentDidMount() {
-        this.loadChanelsData({
-            page: 1,
-            pageSize: 6,
-            secret: "035c73f7-bb6b-4889-a715-d9eb2d1925cc"
-        })
+        this.loadChanelsData()
     }
 
     loadChanelsData = (params) => {
-        findChannels(params).then(res => {
+        findChannels({
+            page: this.state.page,
+            pageSize: this.state.pageSize,
+            ...params
+        }).then(res => {
             this.setState({
                 data: res.data,
                 dataTotal: res.total,
@@ -37,17 +40,21 @@ export default class Channel extends React.Component {
         })
     }
 
+    deleteChannelData = (channel) => {
+        deleteChannel(channel.id).then(res => {
+            message.success('删除『' + channel.name + '』成功!');
+            this.loadChanelsData()
+        })
+    }
+
     toggleChannelActive = (channel, checked) => {
         const {id, active, ...rest} = channel;
         modifyChannel(id, {
             ...rest,
             active: checked ? 1 : 0
         }).then(res => {
-            this.loadChanelsData({
-                page: this.state.page,
-                pageSize: this.state.pageSize,
-                secret: "035c73f7-bb6b-4889-a715-d9eb2d1925cc"
-            })
+            message.success('配置『' + channel.name + '』成功!');
+            this.loadChanelsData()
         })
     }
 
@@ -55,26 +62,23 @@ export default class Channel extends React.Component {
         return (
             <RvPage className={"home-page"} headerTools={
                 <div>
-                    <Button icon={"plus"}>新增通道</Button>
+                    <Button icon={"plus"} type="primary" onClick={() => {
+                        RvModal.open({
+                            width: 950,
+                            title: `添加通道配置`,
+                            footer: null,
+                            onCancel: (args) => args.refresh && this.loadChanelsData(),
+                        }, <ChannelForm mode="create"/>)
+                    }}>添加通道</Button>
                 </div>
             }>
                 <List
                     className={"channel-config-panellist"}
-                    grid={{
-                        gutter: 16,
-                        xs: 2,
-                        sm: 2,
-                        md: 2,
-                        lg: 2,
-                        xl: 2,
-                        xxl: 2,
-                    }}
+                    grid={{ gutter: 16, column: 2 }}
                     pagination={{
                         onChange: page => {
                             this.loadChanelsData({
                                 page: page,
-                                pageSize: this.state.pageSize,
-                                secret: "035c73f7-bb6b-4889-a715-d9eb2d1925cc"
                             })
                         },
                         current: this.state.page,
@@ -90,7 +94,23 @@ export default class Channel extends React.Component {
                                       <div>
                                           <Switch className={"channel-config-active-switch"} size={"default"} checkedChildren="启用" unCheckedChildren="关闭" checked={item.active == 1}
                                                   onChange={(checked) => this.toggleChannelActive(item, checked)}/>
-                                          <Button className={"channel-config-edit-btn"} size={"default"} icon={"setting"}>编辑</Button>
+                                          <Button className={"channel-config-btn channel-config-del-btn"} size={"default"} icon={"delete"} type="danger" ghost onClick={() => {
+                                              RvModal.deleteConfirm(item.name, {
+                                                  title: '您确定要删除此通道吗?',
+                                                  onOk: () => {
+                                                      this.deleteChannelData(item);
+                                                  }
+                                              });
+                                          }}/>
+                                          <Button className={"channel-config-btn channel-config-edit-btn"} size={"default"} icon={"setting"} type="primary" onClick={() => {
+                                              RvModal.open({
+                                                  width: 950,
+                                                  title: `通道配置`,
+                                                  footer: null,
+                                                  onCancel: (args) => args.refresh && this.loadChanelsData(),
+                                              }, <ChannelForm mode="edit" id={item.id}/>)
+                                          }}/>
+
                                       </div>
                                   }>
                                 <div className={"channel-config-view-panel-inner"}>
@@ -120,7 +140,17 @@ export default class Channel extends React.Component {
                                     </div>
                                     <div>
                                         <div>录像</div>
-                                        <div>{item.record_mp4 ? <span className={"c-enable"}>已开启</span> : <span className={"c-disable"}>已关闭</span>}</div>
+                                        <div>
+                                            {
+                                                item.record_mp4 ?
+                                                    <>
+                                                        <span className={"c-enable"}>已开启</span>
+                                                        <span className={"max-keep-record-days-lable"}>保留{item.record_mp4}天</span>
+                                                    </>
+                                                    :
+                                                    <span className={"c-disable"}>已关闭</span>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </Card>

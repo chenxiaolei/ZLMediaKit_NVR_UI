@@ -14,7 +14,6 @@ import {dynamicWrapper} from "./util/routerHelp";
 import ErrorHandler from "./component/Exception/ErrorHandler"
 import PrivateRoute from "./component/PrivateRoute";
 import {Route, Switch} from "react-router";
-import Login from "./view/login/Login";
 
 
 export const {store, persistor} = configureStore();
@@ -27,6 +26,7 @@ export default class Root extends React.Component {
         })
 
         const App = dynamicWrapper(() => import(`@/container/App/App`) )
+        const ZLPlayer = dynamicWrapper(() => import(`@/view/player/ZLPlayer`) )
 
         return (
             <Provider store={store}>
@@ -37,6 +37,7 @@ export default class Root extends React.Component {
                                 <ErrorHandler>
                                     <Switch>
                                         <Route exact path="/login" component={UserLayout}/>
+                                        <Route exact path="/play" component={ZLPlayer}/>
                                         <PrivateRoute path="/" component={App}/>
                                     </Switch>
                                 </ErrorHandler>

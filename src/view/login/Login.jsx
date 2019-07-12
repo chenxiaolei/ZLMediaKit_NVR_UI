@@ -53,7 +53,7 @@ export default class Login extends React.Component {
             if (!err) {
                 loginUser(values).then(response => {
                     const {code} = response.action.payload;
-                    if (code == 200) {
+                    if (code == 0) {
                         console.log("lastLocation", lastLocation)
                         if (lastLocation && lastLocation.pathname != "/login") {
                             history.push(`${lastLocation.pathname}${lastLocation.search}`)
@@ -82,7 +82,7 @@ export default class Login extends React.Component {
             <div className={styles.main}>
                 <div className={styles.login}>
                     <Form onSubmit={this.handleLogin}>
-                        <Form.Item>
+                        {/*<Form.Item>
                             {getFieldDecorator('loginUniqueKey', {
                                 rules: [{required: true, message: `请输入用户名`}],
                             })(
@@ -95,14 +95,14 @@ export default class Login extends React.Component {
                                 />
                             )}
 
-                        </Form.Item>
+                        </Form.Item>*/}
                         <Form.Item>
-                            {getFieldDecorator('password', {
-                                rules: [{required: true, message: '请输入密码'}],
+                            {getFieldDecorator('secret', {
+                                rules: [{required: true, message: '请输入Secret'}],
                             })(
-                                <Input type="password"
+                                <Input type="secret"
                                        size='large'
-                                       placeholder="请输入密码"
+                                       placeholder="请输入Secret"
                                        prefix={<Icon type="lock" className="icon-change"/>}
                                        suffix={passwordInputSuffix}
                                        ref={node => this.passwordInput = node}

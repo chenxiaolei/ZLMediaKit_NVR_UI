@@ -1,15 +1,18 @@
 
-var apiDomin = `${location.protocol}//localhost:8099`;
+var apiDomin = `${location.protocol}//${process.env.REACT_APP_API_HOST}`;
 
 const APIV1 = apiDomin + '/index/api';
 
 module.exports = {
     YQL: [],
     CORS: [apiDomin],
-    api_domin: apiDomin,
+    apiDomin: apiDomin,
     api: {
+        login: `${APIV1}/login`,
+
         searchChannelConfigs: `${APIV1}/searchChannelConfigs`,
         searchChannelConfig: `${APIV1}/searchChannelConfig`,
+        searchChannelConfigByVas: `${APIV1}/searchChannelConfigByVas`,
         updateChannelConfig: `${APIV1}/updateChannelConfig`,
         createChannelConfig: `${APIV1}/createChannelConfig`,
         saveChannelConfig: `${APIV1}/saveChannelConfig`,

@@ -18,11 +18,11 @@ const metadata = {
     name: 'ROOT',
     children: [
         {
-            name: '主页',
+            name: '控制台',
             path: '',
             icon: 'rvicon-map',
             navClass: "module-bpm",
-            type: "nav",
+            type: "menu",
             routerInnerComponent: () => import(`@/view/home/Home`),
             routerExact: true,
         },
@@ -52,7 +52,7 @@ const metadata = {
             type: "menu",
             routerInnerComponent: () => import(`@/view/channel/Channel`),
             routerExact: false,
-        }, {
+        },/* {
             name: '版本信息',
             path: 'about',
             icon: 'rvicon-map',
@@ -60,7 +60,7 @@ const metadata = {
             type: "menu",
             routerInnerComponent: () => import(`@/view/about/About`),
             routerExact: false,
-        }
+        }*/
     ]
 };
 

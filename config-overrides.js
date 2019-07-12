@@ -26,9 +26,11 @@ module.exports = override(
         '@emotion/babel-preset-css-prop'
     ]),
 
-    fixBabelImports('import', {
+    fixBabelImports('antd', {
         libraryName: 'antd',
         libraryDirectory: 'es',
         style: true,
     }),
+
+
 );

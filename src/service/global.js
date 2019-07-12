@@ -1,4 +1,45 @@
 import localForage from "localforage";
+import apiconfig from "../config/apiconfig";
+import request from "../util/request";
+
+
+
+
+const {getThreadsLoad, getAllSession, kickSession, restartServer, login, getServerConfig} = apiconfig.api;
+
+
+export async function findThreadsLoad() {
+    return request({url: getThreadsLoad, method: 'get', data: null,});
+}
+
+
+
+export async function findServerAllSession() {
+    return request({url: getAllSession, method: 'get', data: null,});
+}
+
+
+export async function kickServerTcpSession(id) {
+    return request({url: kickSession, method: 'post',  data:  {id: id}});
+}
+
+
+export async function restartZlmediaServer() {
+    return request({url: restartServer, method: 'post', data: null,});
+}
+
+
+export async function loginServer(params) {
+    return request({url: login, method: 'post',  data:  {...params}});
+}
+
+
+export async function findServerConfigParams() {
+    return request({url: getServerConfig, method: 'get',  data: null,});
+}
+
+
+
 
 /**
  * 清除本地缓存

@@ -29,7 +29,7 @@ export default class RvFormItem extends React.Component {
         const {rcForm: {getFieldDecorator}, defaultItemLayout, rcFormMode} = this.context;
 
         let {
-            label, width, formData, formFieldName, formFieldOption, dataIndex, displayDataIndex,
+            label, extra, width, formData, formFieldName, formFieldOption, dataIndex, displayDataIndex,
             placeholder, comp,
             displayRender, dataRender, enumType, enums: {data: enumsData}
         } = this.props;
@@ -60,6 +60,7 @@ export default class RvFormItem extends React.Component {
             <Form.Item
                 {...defaultItemLayout}
                 label={label}
+                extra={extra}
             >
                 {
                     rcFormMode === "view" ?
@@ -148,19 +149,20 @@ export default class RvFormItem extends React.Component {
         if (!isArray) {
             transformFields = [fields]
         }
-        const result = transformFields.filter((field) => {
-            const {mode = ["create", "view", "edit"]} = field;
-            return lodash.includes(mode, formMode);
-        }).map((field, index) => {
-            const {label, name, option, mode, ...rest} = field;
-            return <RvFormItem key={`${name}${index}`}
-                               label={`${label}`}
-                               formFieldName={`${name}`}
-                               formFieldOption={{...option}}
-                               {...rest}
-                               formData={formData}/>
+        const result =
+            transformFields.filter((field) => {
+                const {mode = ["create", "view", "edit"]} = field;
+                return lodash.includes(mode, formMode) && !field.hide;
+            }).map((field, index) => {
+                const {label, name, option, mode, ...rest} = field;
+                return <RvFormItem key={`${name}${index}`}
+                                   label={`${label}`}
+                                   formFieldName={`${name}`}
+                                   formFieldOption={{...option}}
+                                   {...rest}
+                                   formData={formData}/>
 
-        });
+            });
 
 
         return isArray ? result : result.find;

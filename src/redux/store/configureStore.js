@@ -59,23 +59,34 @@ const persistedReducers = persistReducer(persistConfig, reducers);
 const setAxiosInterceptors = (store) => {
 
 
-   /* axios.interceptors.request.use(function (config) {
+    axios.interceptors.request.use(function (config) {
 
         const {isAuthenticated, token} = store.getState().userAuth;
         if (isAuthenticated && token) {
-            config.headers.Authorization = token;
+            if(config.method=="get"){
+                config.params = {
+                    secret: token,
+                    ...config.params
+                }
+            }else if(config.method=="post"){
+                config.data = {
+                    secret: token,
+                    ...config.data
+                }
+            }
+            //config.headers.Authorization = token;
         }
 
         return config;
     }, function (err) {
         return Promise.reject(err);
-    });*/
+    });
 
-    /*axios.interceptors.response.use(function (response) {
-        if (lodash.startsWith(response.request.responseURL, apiconfig.api_domin)) {
+    axios.interceptors.response.use(function (response) {
+        if (lodash.startsWith(response.request.responseURL, apiconfig.apiDomin)) {
             const rsData = response.data;
-            if (rsData.code != 200) {
-                if (rsData.code == 401) {
+            if (rsData.code != 0) {
+                if (rsData.code == -100) {
                     //message.error('会话丢失，请重新登陆');
                     //history.push('/login');
                     store.dispatch({
@@ -83,13 +94,9 @@ const setAxiosInterceptors = (store) => {
                     })
 
                 } else {
-                    if (rsData.data) {
-                        const msgArr = Object.values(rsData.data);
-                        const {0: first} = msgArr;
-                        message.error(first)
-                    } else {
-                        message.error(rsData.msg);
-                    }
+                   if(rsData.mgs){
+                       message.error(rsData.msg);
+                   }
                 }
                 const err = new Error(rsData.msg);
                 err.data = rsData;
@@ -101,7 +108,7 @@ const setAxiosInterceptors = (store) => {
         return response;
     }, function (error) {
         return Promise.reject(error);
-    });*/
+    });
 
 };
 
