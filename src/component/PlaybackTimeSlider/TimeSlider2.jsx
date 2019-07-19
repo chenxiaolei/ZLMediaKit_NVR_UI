@@ -381,7 +381,15 @@ export default class TimeSlider2 extends React.Component {
 
         var e = window.event || event;
         var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-        var middle_time = _this.startTimestamp + (_this.hoursPerRuler * 3600 * 1000) / 2; //ms 记住当前中间的时间
+
+
+        var pos_x = _this.getCursorXPosition(e);
+        var px_per_ms = _this.canvansW / (_this.hoursPerRuler * 60 * 60 * 1000);
+        var eventPositionTime =  _this.startTimestamp + pos_x / px_per_ms;//m
+
+
+        // s 记住当前中间的时间
+        //var middle_time = _this.startTimestamp + (_this.hoursPerRuler * 3600 * 1000) / 2; //ms 记住当前中间的时间
         if (delta < 0) {
             _this.zoom = _this.zoom + 4;
             if (_this.zoom >= 24) {
@@ -397,7 +405,11 @@ export default class TimeSlider2 extends React.Component {
         }
 
         _this.clearCanvas();
-        _this.startTimestamp = middle_time - (_this.hoursPerRuler * 3600 * 1000) / 2; //startTimestamp = 当前中间的时间 - zoom/2
+
+        var px_per_ms2 = _this.canvansW / (_this.hoursPerRuler * 60 * 60 * 1000);
+        _this.startTimestamp= eventPositionTime - pos_x / px_per_ms2
+
+        //_this.startTimestamp = middle_time - (_this.hoursPerRuler * 3600 * 1000) / 2; //startTimestamp = 当前中间的时间 - zoom/2
         _this.init(_this.startTimestamp, _this.playTimestamp, _this.hoverTooltip, _this.timecell, true)
         _this.gIsMousewheel = false;
     }
