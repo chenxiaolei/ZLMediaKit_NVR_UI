@@ -21,7 +21,7 @@ module.exports = {
         queryRecordMonthly: `${APIV1}/queryRecordMonthly`,
         queryRecordDaily: `${APIV1}/queryRecordDaily`,
 
-        touchChannelProxyStream: `${APIV1}/touchProxyStream`,
+        touchChannelProxyStream: `${APIV1}/touchChannelProxyStream`,
 
         setServerConfig: `${APIV1}/setServerConfig`,
         getServerConfig: `${APIV1}/getServerConfig`,

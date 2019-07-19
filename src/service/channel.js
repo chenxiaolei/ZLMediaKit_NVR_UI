@@ -2,7 +2,7 @@ import request from '../util/request';
 import apiconfig from '../config/apiconfig'
 
 
-const {searchChannelConfigs, searchChannelConfig, deleteChannelConfig, updateChannelConfig, createChannelConfig, searchChannelConfigByVas, saveChannelConfig, queryRecordMonthly, queryRecordDaily} = apiconfig.api;
+const {searchChannelConfigs, searchChannelConfig, deleteChannelConfig, updateChannelConfig, createChannelConfig, searchChannelConfigByVas, touchChannelProxyStream,saveChannelConfig, queryRecordMonthly, queryRecordDaily} = apiconfig.api;
 
 
 export async function findChannels(params) {
@@ -41,3 +41,8 @@ export async function findChannelRecordDaily(vhost, app, stream, period) {
             vhost, app, stream, period
         },});
 }
+
+export async function requestTouchChannelProxyStream(vhost, app, stream) {
+    return request({url: touchChannelProxyStream, method: 'post',data: {vhost, app, stream},});
+}
+

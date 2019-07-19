@@ -390,7 +390,7 @@ Slider.defaultProps = {
   onChange: function onChange() {}
 };
 
-var css$1 = ".index-module_absolute__2RX-A {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.index-module_reactPlayerSkin__19Nvi {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  overflow: hidden;\n  color: #eee;\n  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);\n}\n.index-module_poster__nWX1t {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #000;\n  object-fit: contain;\n}\n.index-module_videoMask__2LV8U {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #000;\n}\n.index-module_hiddenVideoMask__1vu35 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #000;\n  opacity: 0;\n  background: transparent;\n}\n.index-module_controls__7PZ4E {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: auto;\n  padding: 0 16px;\n  transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1);\n}\n.index-module_hiddenControls__22IAT {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: auto;\n  padding: 0 16px;\n  transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1);\n  transform: translate(0, 46px);\n}\n.index-module_waiting__1NGMo,\n.index-module_ended__2Jb4s,\n.index-module_blocked__1InV-,\n.index-module_loading__3quTf {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  overflow: hidden;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 50px;\n  background: transparent;\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n.index-module_kernelMsg__3LY19 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  padding: 2em;\n  background: rgba(0, 0, 0, 0.65);\n  overflow-y: auto;\n}\nbutton.index-module_ended__2Jb4s {\n  border: 0;\n  padding: 0;\n  margin: 0;\n  cursor: pointer;\n  background-color: transparent;\n  outline: 0 none transparent;\n}\n.index-module_bar__3DQB9 {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n  padding: 0 8px 4px;\n}\n.index-module_bar__3DQB9 button {\n  border: 0;\n  padding: 0;\n  margin: 0;\n  cursor: pointer;\n  background-color: transparent;\n  width: 32px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 20px;\n  outline: 0 none transparent;\n  display: inline-block;\n  vertical-align: bottom;\n}\n.index-module_bar__3DQB9 .index-module_textBtn__1YK2c {\n  width: auto;\n  padding: 0 8px;\n  font-size: 14px;\n}\n.index-module_flexItem__1dt6H {\n  flex: 1;\n  overflow: hidden;\n  white-space: nowrap;\n}\n.index-module_controlText__1djOf {\n  height: 32px;\n  line-height: 32px;\n  font-size: 14px;\n  display: inline-block;\n  padding: 0 8px;\n}\n.index-module_volumeSlider__3AzHq {\n  height: 32px;\n  line-height: 32px;\n  font-size: 14px;\n  display: inline-block;\n  padding: 0 8px;\n  width: 120px;\n  vertical-align: bottom;\n  padding-left: 4px;\n  padding-right: 12px;\n}\n.index-module_volumeSlider__3AzHq .ant-slider {\n  margin-top: 10px;\n}\n.index-module_volumeSlider__3AzHq .ant-slider-rail {\n  background: rgba(255, 255, 255, 0.2);\n}\n.index-module_volumeSlider__3AzHq .ant-slider-rail {\n  background: rgba(255, 255, 255, 0.2);\n}\n.index-module_volumeSlider__3AzHq .ant-slider-track {\n  background: rgba(255, 255, 255, 0.85);\n}\n.index-module_volumeSlider__3AzHq .ant-slider-handle {\n  background: rgba(255, 255, 255, 0.85);\n  border: none 0 transparent;\n}\n.index-module_volumeSlider__3AzHq .ant-slider-handle:focus {\n  border: none 0 transparent;\n  box-shadow: none;\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-rail {\n  background: rgba(255, 255, 255, 0.2);\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-track {\n  background: rgba(255, 255, 255, 0.85);\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-handle {\n  background: rgba(255, 255, 255, 0.85);\n  border: none 0 transparent;\n  box-shadow: none;\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open) {\n  border: none 0 transparent;\n  box-shadow: none;\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-handle:focus {\n  border: none 0 transparent;\n  box-shadow: none;\n}\n.index-module_liveDot__C-Q8t {\n  width: 6px;\n  height: 6px;\n  display: inline-block;\n  border-radius: 50%;\n  background: #ff0000;\n  margin-right: 8px;\n  vertical-align: middle;\n  position: relative;\n  top: -2px;\n}\n@media (max-width: 575px) {\n  .index-module_volume__NkVH3 {\n    display: none;\n  }\n}\n";
+var css$1 = ".index-module_absolute__2RX-A {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.index-module_reactPlayerSkin__19Nvi {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  overflow: hidden;\n  color: #eee;\n  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);\n}\n.index-module_poster__nWX1t {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #000;\n  object-fit: contain;\n}\n.index-module_videoMask__2LV8U {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #000;\n}\n.index-module_hiddenVideoMask__1vu35 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: #000;\n  opacity: 0;\n  background: transparent;\n}\n.index-module_controls__7PZ4E {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: auto;\n  padding: 0 16px;\n  transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1);\n}\n.index-module_hiddenControls__22IAT {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: auto;\n  padding: 0 16px;\n  transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1);\n  transform: translate(0, 48px);\n}\n.index-module_waiting__1NGMo,\n.index-module_ended__2Jb4s,\n.index-module_blocked__1InV-,\n.index-module_loading__3quTf {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  overflow: hidden;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 50px;\n  background: transparent;\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n.index-module_kernelMsg__3LY19 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  padding: 2em;\n  background: rgba(0, 0, 0, 0.65);\n  overflow-y: auto;\n}\nbutton.index-module_ended__2Jb4s {\n  border: 0;\n  padding: 0;\n  margin: 0;\n  cursor: pointer;\n  background-color: transparent;\n  outline: 0 none transparent;\n}\n.index-module_bar__3DQB9 {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n  padding: 0 8px 4px;\n}\n.index-module_bar__3DQB9 button {\n  border: 0;\n  padding: 0;\n  margin: 0;\n  cursor: pointer;\n  background-color: transparent;\n  width: 32px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 20px;\n  outline: 0 none transparent;\n  display: inline-block;\n  vertical-align: bottom;\n}\n.index-module_bar__3DQB9 .index-module_textBtn__1YK2c {\n  width: auto;\n  padding: 0 8px;\n  font-size: 14px;\n}\n.index-module_flexItem__1dt6H {\n  flex: 1;\n  overflow: hidden;\n  white-space: nowrap;\n}\n.index-module_controlText__1djOf {\n  height: 32px;\n  line-height: 32px;\n  font-size: 14px;\n  display: inline-block;\n  padding: 0 8px;\n}\n.index-module_volumeSlider__3AzHq {\n  height: 32px;\n  line-height: 32px;\n  font-size: 14px;\n  display: inline-block;\n  padding: 0 8px;\n  width: 120px;\n  vertical-align: bottom;\n  padding-left: 4px;\n  padding-right: 12px;\n}\n.index-module_volumeSlider__3AzHq .ant-slider {\n  margin-top: 10px;\n}\n.index-module_volumeSlider__3AzHq .ant-slider-rail {\n  background: rgba(255, 255, 255, 0.2);\n}\n.index-module_volumeSlider__3AzHq .ant-slider-rail {\n  background: rgba(255, 255, 255, 0.2);\n}\n.index-module_volumeSlider__3AzHq .ant-slider-track {\n  background: rgba(255, 255, 255, 0.85);\n}\n.index-module_volumeSlider__3AzHq .ant-slider-handle {\n  background: rgba(255, 255, 255, 0.85);\n  border: none 0 transparent;\n}\n.index-module_volumeSlider__3AzHq .ant-slider-handle:focus {\n  border: none 0 transparent;\n  box-shadow: none;\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-rail {\n  background: rgba(255, 255, 255, 0.2);\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-track {\n  background: rgba(255, 255, 255, 0.85);\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-handle {\n  background: rgba(255, 255, 255, 0.85);\n  border: none 0 transparent;\n  box-shadow: none;\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open) {\n  border: none 0 transparent;\n  box-shadow: none;\n}\n.index-module_volumeSlider__3AzHq .ant-slider:hover .ant-slider-handle:focus {\n  border: none 0 transparent;\n  box-shadow: none;\n}\n.index-module_liveDot__C-Q8t {\n  width: 6px;\n  height: 6px;\n  display: inline-block;\n  border-radius: 50%;\n  background: #ff0000;\n  margin-right: 8px;\n  vertical-align: middle;\n  position: relative;\n  top: -2px;\n}\n@media (max-width: 575px) {\n  .index-module_volume__NkVH3 {\n    display: none;\n  }\n}\n";
 var styles$1 = {"absolute":"index-module_absolute__2RX-A","reactPlayerSkin":"index-module_reactPlayerSkin__19Nvi","poster":"index-module_poster__nWX1t","videoMask":"index-module_videoMask__2LV8U","hiddenVideoMask":"index-module_hiddenVideoMask__1vu35","controls":"index-module_controls__7PZ4E","hiddenControls":"index-module_hiddenControls__22IAT","waiting":"index-module_waiting__1NGMo","ended":"index-module_ended__2Jb4s","blocked":"index-module_blocked__1InV-","loading":"index-module_loading__3quTf","kernelMsg":"index-module_kernelMsg__3LY19","bar":"index-module_bar__3DQB9","textBtn":"index-module_textBtn__1YK2c","flexItem":"index-module_flexItem__1dt6H","controlText":"index-module_controlText__1djOf","volumeSlider":"index-module_volumeSlider__3AzHq","liveDot":"index-module_liveDot__C-Q8t","volume":"index-module_volume__NkVH3"};
 styleInject(css$1);
 
@@ -1263,7 +1263,10 @@ var useHlsjs = (function (_ref, getVideoElement) {
       setKernelMsg(null);
     };
   }, [hlsPlayer, onError]);
-  return kernelMsg;
+  return {
+    kernelPlayer: hlsPlayer,
+    kernelMsg: kernelMsg
+  };
 });
 
 var useFlvjs = (function (_ref, getVideoElement) {
@@ -1359,7 +1362,10 @@ var useFlvjs = (function (_ref, getVideoElement) {
       } catch (errMsg) {}
     };
   }, [flvPlayer, onError]);
-  return kernelMsg;
+  return {
+    kernelPlayer: flvPlayer,
+    kernelMsg: kernelMsg
+  };
 });
 
 var useNative = (function (_ref, getVideoElement) {
@@ -1414,7 +1420,10 @@ var useNative = (function (_ref, getVideoElement) {
 
     return function () {};
   }, [loaded, onDocumentClick]);
-  return null;
+  return {
+    kernelPlayer: getVideoElement(),
+    kernelMsg: null
+  };
 });
 
 var noop$1 = function noop() {};
@@ -1556,11 +1565,15 @@ var ReactPlayer = function ReactPlayer(_ref, ref) {
     x5playsinline: x5playsinline,
     onFullscreenChange: onFullscreenChange
   }, _getVideoElement, getPlayerElement);
-  var kernelMsg = getRenderHooks(kernel)({
+
+  var _getRenderHooks = getRenderHooks(kernel)({
     src: src,
     config: config,
     onKernelError: onKernelError
-  }, _getVideoElement);
+  }, _getVideoElement),
+      kernelPlayer = _getRenderHooks.kernelPlayer,
+      kernelMsg = _getRenderHooks.kernelMsg;
+
   React.useImperativeHandle(ref, function () {
     return {
       isPlaying: function isPlaying() {
@@ -1598,6 +1611,18 @@ var ReactPlayer = function ReactPlayer(_ref, ref) {
       },
       isPiP: function isPiP() {
         return piPProps.pictureInPictureEnabled && piPProps.pip;
+      },
+      pause: function pause() {
+        return stateProps.onPauseClick();
+      },
+      play: function play() {
+        return stateProps.onPlayClick();
+      },
+      getKernelPlayer: function getKernelPlayer() {
+        return kernelPlayer;
+      },
+      getKernel: function getKernel() {
+        return kernel;
       }
     };
   });

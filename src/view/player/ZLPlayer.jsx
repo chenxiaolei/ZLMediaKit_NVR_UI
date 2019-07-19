@@ -4,67 +4,87 @@ import {findChannelByVas} from "../../service/channel";
 import queryString from 'query-string';
 import Loader from "../../component/Loader";
 import {Icon, Input, Radio, Tabs, Tooltip} from "antd";
-import ReactPlayer, {GrindPlayer} from '../../component/ReactPlayer';
+import ReactPlayer from '../../component/ReactPlayer';
 import hlsjs from 'hls.js';
 import flvjs from 'flv.js';
 import grindPlayerSwf from '../../component/ReactPlayer/GrindPlayer.swf';
 import flashlsOSMFSwf from '../../component/ReactPlayer/flashlsOSMF.swf';
 import UAParser from 'ua-parser-js';
+import ReactTimeout from "react-timeout";
+import classNames from "classnames"
 
-
-
-
+@ReactTimeout
 export default class ZLPlayer extends React.Component {
 
     constructor(props) {
         super(props);
         //const that = this;
         this.state = {
+            iframe: false,
             channelData: null,
             playBaseProps: {
                 muted: true,
                 videoProps: {
                     className: "zpplayer-player-video",
-
                 },
-                playerProps: {
-
-                },
+                playerProps: {},
                 onKernelError: () => {
                     console.log("onKernelError")
                 },
+                onCanPlay: () => {
+                    this.reactPlayer.play()
+                },
+                onWaiting: (a, b, c, d) => {
+                    console.log("onWaiting")
+                },
+                onEmptied: () => {
+                    console.log("onEmptied")
+                },
 
+                onCanPlayThrough: () => {
+                    console.log("onCanPlayThrough")
+                },
+                onLoadedData: () => {
+                    console.log("onLoadedData")
+                },
+                onLoadedMetadata: () => {
+                    console.log("onLoadedMetadata")
+                },
+                onError: () => {
+                    console.log("onError")
+                }
             },
-
-
         }
-
     }
 
     componentDidMount() {
+        document.body.style.minWidth = "100px";
         const ua = UAParser(global.navigator.userAgent);
+        this.channelParams = queryString.parse(this.props.location.search);
 
-
-        let params = queryString.parse(this.props.location.search);
+        const {vhost, app, stream, iframe=false} = this.channelParams;
 
 
         this.setState({
             loading: true,
+            iframe
         }, () => {
-            findChannelByVas(params.vhost, params.app, params.stream).then((res) => {
-                this.setState({
-                    channelData: res.data,
-                    params: params,
-                }, () => {
-                    this.changePlayType("flvjs")
-                })
-            }).finally(() => {
+            findChannelByVas(vhost, app, stream)
+                .then(res => {
+                    this.setState({
+                        channelData: res.data,
+                        params: this.channelParams,
+                    }, () => {
+                        this.changePlayType("flvjs")
+                    })
+                }).finally(() => {
                 this.setState({
                     loading: false,
                 })
             })
         })
     }
+
 
     changePlayType = (type) => {
         const {channelData} = this.state;
@@ -78,8 +98,10 @@ export default class ZLPlayer extends React.Component {
                     type: 'video/x-flv',
 
                     config: {
-                        enableStashBuffer: false,
-                        stashInitialSize: 384
+                        enableWorker: true,
+                        hasAudio: false,
+                        //enableStashBuffer: false,
+                        //stashInitialSize: 384
                     },
                 }
             })
@@ -117,7 +139,7 @@ export default class ZLPlayer extends React.Component {
 
 
         return (
-            <div className={"zpplayer-wrapping"}>
+            <div className={classNames("zpplayer-wrapping",{"iframe-wrapping":this.state.iframe})}>
                 <div className={"zpplayer-header"}>
                     {channelData.name}
                 </div>
@@ -148,8 +170,8 @@ export default class ZLPlayer extends React.Component {
                                       }}>
                                           <Radio.Button value="flvjs">FLV</Radio.Button>
                                           <Radio.Button value="flash_rtmp">RTMP</Radio.Button>
-                                          <Tooltip title={!channelData.play_addrs.hls?"当前通道未开启HLS直播":null}>
-                                            <Radio.Button value="hlsjs" disabled={!channelData.play_addrs.hls}>HLS</Radio.Button>
+                                          <Tooltip title={!channelData.play_addrs.hls ? "当前通道未开启HLS直播" : null}>
+                                              <Radio.Button value="hlsjs" disabled={!channelData.play_addrs.hls}>HLS</Radio.Button>
                                           </Tooltip>
 
                                       </Radio.Group>
