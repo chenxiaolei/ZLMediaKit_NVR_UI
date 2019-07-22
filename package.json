@@ -1,6 +1,6 @@
 {
   "name": "zlmediakit_nvr_ui",
-  "version": "0.1.0",
+  "version": "v1.0.0",
   "private": true,
   "dependencies": {
     "@emotion/core": "~10.0.14",
@@ -68,7 +68,8 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build"
+    "build": "react-app-rewired build",
+    "postbuild": "tar -cvzf zlmediakit_nvr_ui.$npm_package_version.tar.gz -C ./build ."
   },
   "browserslist": {
     "production": [
