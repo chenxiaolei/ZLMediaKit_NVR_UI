@@ -1,5 +1,4 @@
-
-var apiDomin = `${location.protocol}//${process.env.REACT_APP_API_HOST}`;
+var apiDomin = `${location.protocol}//${window._env_.REACT_APP_API_HOST}`;
 
 const APIV1 = apiDomin + '/index/api';
 

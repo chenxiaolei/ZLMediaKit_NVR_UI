@@ -1,6 +1,6 @@
 {
   "name": "zlmediakit_nvr_ui",
-  "version": "v1.0.0",
+  "version": "v1.0.1",
   "private": true,
   "dependencies": {
     "@emotion/core": "~10.0.14",
@@ -67,6 +67,7 @@
     "redux-logger": "~3.0.6"
   },
   "scripts": {
+    "dev": "chmod +x ./env.sh && ./env.sh && mv env-config.js ./public/ && react-app-rewired start",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "postbuild": "tar -cvzf zlmediakit_nvr_ui.$npm_package_version.tar.gz -C ./build ."
