@@ -6,7 +6,7 @@ import Item from "./RvFormItem";
 import "./RvForm.less";
 import {messages} from "../../util/asyncValidatorMessageesCn";
 
-const excludeProp = ['items', 'closeWrappingModal', 'form', 'onValuesChange', 'loading', 'onEditSubmit', 'onCreateSubmit'];
+const excludeProp = ['items', 'closeWrappingModal', 'form', 'onValuesChange', 'loading', 'onEditSubmit', 'onCreateSubmit','itemLayout'];
 
 const defaultItemLayout = {
     labelCol: {
@@ -117,7 +117,7 @@ class RvForm extends React.Component {
     }
 
     render() {
-        const {footer, loading, children} = this.props;
+        const {footer, loading, children,itemLayout} = this.props;
         return (
             <Form onSubmit={this.handleSubmit} {...lodash.omit(this.props, excludeProp)}>
                 <Spin spinning={loading}>

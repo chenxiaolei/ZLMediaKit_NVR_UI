@@ -45,10 +45,31 @@ export const BizRegex = {
     loginName: /^[a-zA-Z\u4e00-\u9fa5][\w\u4e00-\u9fa5]+$/,
     captcha: /^\d{1,6}$/,
     noblank: /^[^\s]*$/,
+    json: /^[^\s]*$/,
 }
 
+//是否是JSONObject
+export const isJsonObject = (jsonStr) => {
+    try {
+        if (typeof JSON.parse(jsonStr) === "object" && !Array.isArray(JSON.parse(jsonStr))) {
+            return true;
+        }
+    } catch (e) {
+        console.log("not in json structure or value");
+    }
+    return false;
+}
 
-
+export const isJsonArray = (jsonStr) => {
+    try {
+        if (Array.isArray(JSON.parse(jsonStr))) {
+            return true;
+        }
+    } catch (e) {
+        console.log("not in json structure or value");
+    }
+    return false;
+}
 
 export const findDomainFromUrl = (url) => {
     var result;

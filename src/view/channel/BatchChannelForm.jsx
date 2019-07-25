@@ -1,23 +1,10 @@
 import React from 'react';
-import {Button, Input} from "antd";
+import {Button, message} from "antd";
 import RvForm from "../../component/RvForm/RvForm";
-import {findChannels} from "../../service/channel";
-
-import {UnControlled as CodeMirror} from 'react-codemirror2'
-
-
-
+import {findChannels, saveChannels} from "../../service/channel";
+import RvJsonCodeMirror from "../../component/RvCodeMirror/RvJsonCodeMirror";
 import "./BatchChannelForm.less"
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/solarized.css';
-
-import 'codemirror/mode/javascript/javascript'
-
-import jsonlint from 'jsonlint-mod'
-import 'codemirror/addon/lint/lint.css'
-import 'codemirror/addon/lint/lint'
-import 'codemirror/addon/lint/json-lint'
-window.jsonlint = jsonlint
+import {isJsonArray} from "../../util/globalHelp";
 
 
 @RvForm.create()
@@ -33,32 +20,29 @@ export default class BatchChannelForm extends React.Component {
                     label: 'data',
                     name: 'data',
                     option: {
-                        rules: [{
-                            required: true,
-                        },]
+                        //validateTrigger: 'onFocusout',
+                        rules: [
+                            {required: true},
+                            {validator: this.checkJson},
+                        ]
                     },
-                    comp: <CodeMirror
-                        editorDidMount={editor => { this.editor = editor }}
-                        options={{
-                            mode: 'application/json',
-                            lint: true,
-                            gutters: ['CodeMirror-lint-markers'],
-                            theme: 'solarized dark',
-                            lineNumbers: true
-                        }}
-                        onBeforeChange={(editor, data, value) => {
-                            console.log("onBeforeChange fresh")
-                            console.log(JSON.stringify(data));
-                            console.log(JSON.stringify(value));
-                        }}
-                    />,
+                    comp: <RvJsonCodeMirror height={500}/>,
                 }
             ]
         }
     }
 
+    checkJson=(rule, value, callback)=>{
+        if(isJsonArray(value)){
+            callback();
+            return;
+        }else{
+            callback("无效的JSON Array");
+        }
+    }
+
     componentDidMount() {
-        this.editor.setSize('100%', "400px");
+
         this.setState({
             loading: true,
         })
@@ -82,6 +66,15 @@ export default class BatchChannelForm extends React.Component {
 
     handleEditSubmit = (values) => {
 
+        saveChannels(JSON.parse(values.data)).then((res) => {
+            if (res.code == 0) {
+                message.info("批量配置成功!");
+                this.closeModalIfExist({triggerCancel: true, refresh: true});
+            } else {
+                message.error(res.msg);
+            }
+        })
+
     }
 
     closeModalIfExist = (args) => {
@@ -91,7 +84,10 @@ export default class BatchChannelForm extends React.Component {
 
     render() {
         const {fields, loading, formData} = this.state;
+        if(loading)
+            return null;
         const items = RvForm.Item.transform(fields, "edit", formData);
+
 
         return (
             <RvForm
