@@ -107,6 +107,7 @@ const setAxiosInterceptors = (store) => {
         }
         return response;
     }, function (error) {
+        message.error(error.message);
         return Promise.reject(error);
     });
 
