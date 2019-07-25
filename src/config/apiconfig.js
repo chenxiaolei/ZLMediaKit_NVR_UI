@@ -15,6 +15,9 @@ module.exports = {
         updateChannelConfig: `${APIV1}/updateChannelConfig`,
         createChannelConfig: `${APIV1}/createChannelConfig`,
         saveChannelConfig: `${APIV1}/saveChannelConfig`,
+        saveChannelConfigs: `${APIV1}/saveChannelConfigs`,
+        downloadChannelConfigs: `${APIV1}/downloadChannelConfigs`,
+        uploadChannelConfigs: `${APIV1}/uploadChannelConfigs`,
         deleteChannelConfig: `${APIV1}/deleteChannelConfig`,
 
         queryRecordMonthly: `${APIV1}/queryRecordMonthly`,

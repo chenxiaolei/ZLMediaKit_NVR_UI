@@ -132,18 +132,18 @@ class RvForm extends React.Component {
     }
 
     getChildContext() {
-        const {form: rcForm, mode: rcFormMode} = this.props;
+        const {form: rcForm, mode: rcFormMode, itemLayout} = this.props;
         return {
             rcForm,
             rcFormMode,
-            defaultItemLayout,
+            itemLayout: {...defaultItemLayout,...itemLayout},
         }
     }
 
 
     static childContextTypes = {
         rcForm: PropTypes.any,
-        defaultItemLayout: PropTypes.object,
+        itemLayout: PropTypes.object,
         rcFormMode: PropTypes.string,
     }
 

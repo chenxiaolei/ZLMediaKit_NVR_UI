@@ -26,7 +26,7 @@ export default class RvFormItem extends React.Component {
     }
 
     render() {
-        const {rcForm: {getFieldDecorator}, defaultItemLayout, rcFormMode} = this.context;
+        const {rcForm: {getFieldDecorator}, itemLayout, rcFormMode} = this.context;
 
         let {
             label, extra, width, formData, formFieldName, formFieldOption, dataIndex, displayDataIndex,
@@ -58,7 +58,7 @@ export default class RvFormItem extends React.Component {
 
         return (
             <Form.Item
-                {...defaultItemLayout}
+                {...itemLayout}
                 label={label}
                 extra={extra}
             >
@@ -86,7 +86,7 @@ export default class RvFormItem extends React.Component {
     static contextTypes = {
         rcForm: PropTypes.any,
         rcFormValues: PropTypes.object,
-        defaultItemLayout: PropTypes.object,
+        itemLayout: PropTypes.object,
         rcFormMode: PropTypes.string,
     }
 

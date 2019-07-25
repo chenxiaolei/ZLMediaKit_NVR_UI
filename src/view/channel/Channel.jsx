@@ -1,12 +1,13 @@
 import React from 'react';
 import "./Channel.less"
 import RvPage from "../../component/RvPage/RvPage";
-import {Button, Card, Icon, List, Switch, message} from "antd";
+import {Button, Card, Icon, List, Switch, message, Upload} from "antd";
 import {deleteChannel, findChannels, modifyChannel} from "../../service/channel";
 import classnames from 'classnames';
 import RvModal from "../../component/RvModal/RvModal";
 import ChannelForm from "./ChannelForm";
-
+import apiconfig from '../../config/apiconfig'
+import BatchChannelForm from "./BatchChannelForm";
 
 export default class Channel extends React.Component {
 
@@ -18,6 +19,8 @@ export default class Channel extends React.Component {
             dataTotal: 0,
             page: 1,
             pageSize: 6,
+
+            uploading: false,
         }
     }
 
@@ -58,10 +61,47 @@ export default class Channel extends React.Component {
         })
     }
 
+    channelsUploadChangeHandle = (action) => {
+        if (action.file.status == "done"){
+            this.setState({
+                uploading: false
+            },()=>{
+                message.success('上传通道配置成功!');
+                this.loadChanelsData()
+            })
+        }
+    }
+    channelsBeforeUploadHandle = (file, fileList)=>{
+        this.setState({
+            uploading: true
+        })
+        return true;
+    }
+
     render() {
         return (
             <RvPage className={"home-page"} headerTools={
                 <div>
+                    <Upload
+                        action={apiconfig.api.uploadChannelConfigs}
+                        name={"file"}
+                        accept={"text/csv"}
+                        multiple={false}
+                        showUploadList={false}
+                        disabled={this.state.uploading}
+                        beforeUpload={this.channelsBeforeUploadHandle}
+                        onChange={this.channelsUploadChangeHandle}>
+                        <Button icon={"upload"} type="danger" ghost href={apiconfig.api.downloadChannelConfigs} loading={this.state.uploading}>上传</Button>
+                    </Upload>
+                    <Button icon={"download"} type="primary" ghost href={apiconfig.api.downloadChannelConfigs}>下载</Button>
+                    <Button icon={"import"} type="primary" ghost onClick={() => {
+                        RvModal.open({
+                            width: 950,
+                            title: `通道配置`,
+                            footer: null,
+                            onCancel: (args) => args.refresh && this.loadChanelsData(),
+                        }, <BatchChannelForm/>)
+                    }}>批量</Button>
                     <Button icon={"plus"} type="primary" onClick={() => {
                         RvModal.open({
                             width: 950,
@@ -69,12 +109,13 @@ export default class Channel extends React.Component {
                             footer: null,
                             onCancel: (args) => args.refresh && this.loadChanelsData(),
                         }, <ChannelForm mode="create"/>)
-                    }}>添加通道</Button>
+                    }}>添加</Button>
+
                 </div>
             }>
                 <List
                     className={"channel-config-panellist"}
-                    grid={{ gutter: 16, column: 2 }}
+                    grid={{gutter: 16, column: 2}}
                     pagination={{
                         onChange: page => {
                             this.loadChanelsData({
