@@ -1,3 +1,3 @@
 window._env_ = {
-  REACT_APP_API_HOST: "localhost:9099",
+  REACT_APP_API_HOST: "kf.com:8099",
 }
