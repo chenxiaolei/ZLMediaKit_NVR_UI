@@ -27,7 +27,7 @@ export default class RvResponsiveCanvas extends Component {
 
     handleResize = () => {
         this.setSize();
-        this.props.onResize();
+        this.props.onResize(this.state.width, this.state.height);
     };
 
     setSize = () => {

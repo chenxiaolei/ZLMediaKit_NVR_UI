@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import moment from "moment";
+import "./TimeSlider.less"
 import RvResponsiveCanvas from "../RvResponsiveCanvas/RvResponsiveCanvas";
 
 export default class TimeSlider2 extends React.Component {
@@ -66,6 +67,7 @@ export default class TimeSlider2 extends React.Component {
 
         this.canvansW = this.canvas.width;
         this.canVansH = this.canvas.height;
+
 
         if (this.gIsMousewheel || this.gIsMousedown || this.gIsMousemove)
             return;
@@ -533,10 +535,10 @@ export default class TimeSlider2 extends React.Component {
 
     render() {
         return (
-            <div style={{height: 72}}>
+            <div className={"timeslider-canvas-wrap"}>
                 <RvResponsiveCanvas
                     canvasRef={el => (this.canvas = el)}
-
+                    scale={1}
                     style={{
                         cursor: "pointer",
                         border: "1px solid #cccccc",
